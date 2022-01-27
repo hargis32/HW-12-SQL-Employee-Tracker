@@ -17,7 +17,7 @@ db.connect(function (err) {
     startInquire();
 })
 
-function startInquire() {
+const startInquire = () => {
     inquirer.prompt([
         {
             type: "list",
@@ -64,3 +64,27 @@ function startInquire() {
         }
     })
    };
+
+   const viewDepartments = () => {
+       db.query('SELECT * FROM department', function (err, res) {
+           if (err) throw err;
+           console.table(res);
+           startInquire();
+       })
+   };
+
+   const viewRoles = () => {
+    db.query('SELECT * FROM emp_role', function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startInquire();
+    })
+};
+
+const viewEmployees = () => {
+    db.query('SELECT * FROM employee', function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startInquire();
+    })
+};
